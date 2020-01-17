@@ -18,7 +18,7 @@ When you finish with a database instance, you must close it in order to free up 
 OrientDB orientDB = new OrientDB("embedded:/tm/", OrientDBConfig.defaultConfig());
 
 
-try(ODatabaseDocumentTx db = orientDB.open("test","admin","admin");) {
+try(ODatabaseDocument db = orientDB.open("test","admin","admin");) {
      // Enter your code here...
 }
 // close the context when you shutdown the application or don't need anymore access to the database.
