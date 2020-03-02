@@ -1,6 +1,6 @@
 ---
 search:
-   keywords: ['function', 'access', 'database access']
+   keywords: ['function', 'access', 'database access', 'sandbox']
 ---
 
 # Accessing the Database from a Function
@@ -12,6 +12,21 @@ When you create a function for OrientDB, it always binds the special variable `o
 | `orient.getGraph()` | Returns the current [transactional graph database](http://www.orientechnologies.com/javadoc/latest/com/tinkerpop/blueprints/impls/orient/OrientGraph.html) instance. |
 | `orient.getGraphNoTx()` | Returns the current [non-transactional graph database](http://www.orientechnologies.com/javadoc/latest/com/tinkerpop/blueprints/impls/orient/OrientGraphNoTx.html) instance. |
 | `orient.getDatabase()` | Returns the current [document database](http://www.orientechnologies.com/javadoc/latest/com/orientechnologies/orient/core/db/document/ODatabaseDocumentTx.html) instance. |
+
+
+For security reason starting from *OrientDB 3.0.29*, the usage of Java classes is forbidden by default, with a class filter implmented in the JS engine.
+To enable the access to classes or packages in your JS code change the `allowedPackages` field with comma separated packages or classes.
+
+```xml
+  <handler class="com.orientechnologies.orient.server.handler.OServerSideScriptInterpreter">
+    <parameters>
+      <parameter name="enabled" value="true" />
+      <parameter name="allowedLanguages" value="SQL" />
+       <!--  Comma separated packages  allowed in JS scripts eg. java.math.*, java.util.ArrayList -->
+      <parameter name="allowedPackages" value=""/>
+    </parameters>
+  </handler>
+```
 
 ## Executing Queries
 
